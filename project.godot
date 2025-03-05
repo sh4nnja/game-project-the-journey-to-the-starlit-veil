@@ -15,7 +15,7 @@ config/version="0.1"
 run/main_scene="res://assets/godot/scn/scnManager.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="data"
-config/features=PackedStringArray("4.3", "Mobile")
+config/features=PackedStringArray("4.4", "Mobile")
 boot_splash/bg_color=Color(0.0196078, 0.0196078, 0.0196078, 1)
 boot_splash/show_image=false
 boot_splash/fullsize=false
@@ -69,10 +69,9 @@ limits/debugger/max_chars_per_second=2147483647
 
 [physics]
 
-2d/run_on_separate_thread=true
-3d/run_on_separate_thread=true
 2d/default_gravity=0.0
 2d/default_gravity_vector=Vector2(0, 0)
+common/physics_interpolation=true
 
 [rendering]
 
@@ -83,8 +82,8 @@ textures/default_filters/use_nearest_mipmap_filter=true
 textures/default_filters/anisotropic_filtering_level=0
 environment/ssao/quality=0
 environment/ssil/quality=0
+viewport/hdr_2d=true
 textures/decals/filter=5
 textures/light_projectors/filter=0
 environment/defaults/default_clear_color=Color(0.0171537, 1.96524e-05, 0.0579267, 1)
-viewport/hdr_2d=true
 anti_aliasing/quality/use_debanding=true

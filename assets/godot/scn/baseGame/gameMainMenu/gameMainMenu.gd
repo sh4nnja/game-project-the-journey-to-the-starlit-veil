@@ -20,6 +20,11 @@ extends Node2D
 # Arc related.
 @onready var _uiArcLoaded: Control = get_node("uiLayer/uiMenu/uiArcSelect/uiArcLoaded")
 @onready var _uiNoArc: Control = get_node("uiLayer/uiMenu/uiArcSelect/uiNoArc")
+
+@onready var _uiArcTitle: Label = get_node("uiLayer/uiMenu/uiArcSelect/uiArcLoaded/uiArcDescTitle")
+@onready var _uiArcTitle2: Label = get_node("uiLayer/uiMenu/uiArcSelect/uiArcLoaded/uiArcDescTitle2")
+@onready var _uiArcDesc: Label = get_node("uiLayer/uiMenu/uiArcSelect/uiArcLoaded/uiArcDesc")
+
 @onready var _uiLoadArcBtn: Button = get_node("uiLayer/uiMenu/uiArcSelect/uiArcLoaded/uiStartArc")
 
 # Locate Sector buttons and inputs.
@@ -30,6 +35,8 @@ var _uiLocFocused: bool = false
 var _uiHidden: bool = false
 var _selectArc: bool = false
 var _startedOnce: bool = false
+
+var _arc_scene: String = ""
 
 #------------------------------------------------------------------------------#
 signal _montage
@@ -48,6 +55,14 @@ func _ready() -> void:
 	
 	# Starts the camera animation and changes the quote.
 	_montage.emit()
+	
+	# Update arcs.
+	_updateArcTitles([
+		lib.availableArcs[lib.availableArcs.keys()[0]]["name"], 
+		lib.availableArcs[lib.availableArcs.keys()[0]]["sub-name"], 
+		lib.availableArcs[lib.availableArcs.keys()[0]]["desc"], 
+		lib.availableArcs[lib.availableArcs.keys()[0]]["file"]
+	])
 
 # Fires when input event happens, every time.
 func _input(_event) -> void:
@@ -95,6 +110,9 @@ func _montageGame() -> void:
 
 # Proceed to sector.
 func _proceedToMindscape() -> void:
+	if _uiAnim.is_playing():
+		await _uiAnim.animation_finished
+	
 	# Play the introduction animation on overlay while adding the playthrough.
 	if not _startedOnce:
 		_uiAnim.play("travelToSector")
@@ -105,7 +123,7 @@ func _proceedToMindscape() -> void:
 		_startArc(1)
 	
 	# Show different screen if there's arc loaded.
-	if lib.available_arcs:
+	if lib.availableArcs:
 		_uiLoadArcBtn.set_disabled(false)
 		_uiArcLoaded.set_visible(true)
 		_uiNoArc.set_visible(false)
@@ -119,6 +137,9 @@ func _proceedToMindscape() -> void:
 
 # Generate new sector.
 func _generateNewMindscape() -> void:
+	if _uiAnim.is_playing():
+		await _uiAnim.animation_finished
+	
 	# Play the loading animation on overlay while generating another sector.
 	_uiAnim.play("generateNewSectorFade")
 	
@@ -130,6 +151,9 @@ func _generateNewMindscape() -> void:
 
 # Locate specified sector.
 func _locateMindscape(_mode: int = 0) -> void:
+	if _uiAnim.is_playing():
+		await _uiAnim.animation_finished
+	
 	# Play the locate overlay.
 	if _mode == 0:
 		_uiAnim.play("locateSectorOverlay")
@@ -138,6 +162,9 @@ func _locateMindscape(_mode: int = 0) -> void:
 		_uiAnim.play_backwards("locateSectorOverlay")
 
 func _startArc(_mode: int = 0) -> void:
+	if _uiAnim.is_playing():
+		await _uiAnim.animation_finished
+	
 	if _mode == 0:
 		_uiAnim.play("toMainMenu")
 		_selectArc = false
@@ -148,6 +175,9 @@ func _startArc(_mode: int = 0) -> void:
 
 # Locating specified sector.
 func _locatingMindscape() -> void:
+	if _uiAnim.is_playing():
+		await _uiAnim.animation_finished
+	
 	_uiLocFocused = false
 	_uiAnim.play_backwards("locateSectorOverlay")
 	
@@ -170,6 +200,9 @@ func _exitGame() -> void:
 
 # Enable mainmenu process.
 func goToMainMenu() -> void:
+	if _uiAnim.is_playing():
+		await _uiAnim.animation_finished
+	
 	# Enable mainmenu.
 	lib.gameplay_enabled = false
 	for _node in get_children():
@@ -184,10 +217,20 @@ func goToMainMenu() -> void:
 
 # Hide UI when inactivity.
 func _on_ui_inactivity_timeout() -> void:
+	if _uiAnim.is_playing():
+		await _uiAnim.animation_finished
+	
 	_uiAnim.play("uiFadeInactivity")
 	await _uiAnim.animation_finished
 	_uiHidden = true
 	lib.editCursorVisibility(false)
+
+#------------------------------------------------------------------------------#
+func _updateArcTitles(_details: Array) -> void:
+	_uiArcTitle.set_text(_details[0])
+	_uiArcTitle2.set_text(_details[1])
+	_uiArcDesc.set_text(_details[2])
+	_arc_scene = _details[3]
 
 #------------------------------------------------------------------------------#
 # Hide cursor.
@@ -197,7 +240,10 @@ func editCursorVisibility(showCursor: bool) -> void:
 #------------------------------------------------------------------------------#
 # Starting arc.
 func _on_ui_start_arc() -> void:
-	if lib.arc_loaded:
+	if lib.arcLoaded:
+		_menuCamera.set_enabled(false)
+		get_tree().call_group("gameArcManager", "loadArc", _arc_scene)
 		_uiAnim.play("startArc")
+		await _uiAnim.animation_finished
 	else:
 		pass

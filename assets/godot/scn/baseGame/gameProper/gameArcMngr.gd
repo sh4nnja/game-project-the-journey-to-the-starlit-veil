@@ -1,24 +1,21 @@
 # Responsible for changing the games environment based on commands from the loaded arc.
 # Direct change code for environment and others are located here.
 # Responsible for animations of the mindscape.
-# While the mindScapeMngr is responsible for the generation,
-# mindscapeHandler is the one who manages the mindscape animations, tweening, etc.
 
 extends Node2D
-#------------------------------------------------------------------------------#
-
-# Mindscape textures.
-@onready var _mindscape: Node2D = get_parent().get_node("mindscape/spaceSectorManager")
 
 #------------------------------------------------------------------------------#
-# Animations.
-
-
+# Accessor to the main game proper's scene changer.
+var game: Node2D = get_parent()
 
 #------------------------------------------------------------------------------#
-# Load game arc loaded from the scene loader and place it.
-func prepareArc() -> void:
-	if lib.available_arcs:
-		pass
+
+# Check if there's an arc loaded and start it.
+func loadArc(arc_scene: String):
+	if get_child_count() == 0:
+		var _arc: Object = load(arc_scene).instantiate()
+		add_child(_arc)
+		_arc.startArc()
+	
 	else:
-		print("No arcs available. Maybe the arc folders are corrupted...")
+		print("Critical Error, there's an unusual file currently at the manager. \nIts: " + str(get_child(0)))

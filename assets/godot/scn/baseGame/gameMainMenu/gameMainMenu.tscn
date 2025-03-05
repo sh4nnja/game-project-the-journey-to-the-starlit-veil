@@ -402,6 +402,18 @@ tracks/28/keys = {
 "update": 0,
 "values": [0.9]
 }
+tracks/29/type = "value"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("uiLayer/uiMenu/uiArcSelect/uiArcLoaded/uiStartArc:disabled")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_cwcnj"]
 resource_name = "generateNewSectorFade"
@@ -691,7 +703,7 @@ tracks/0/path = NodePath("uiLayer/uiMenu:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1, 2),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -703,7 +715,7 @@ tracks/1/path = NodePath("uiLayer/uiMenu:process_mode")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1, 2),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 4]
@@ -711,55 +723,40 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("uiCamera:enabled")
+tracks/2/path = NodePath("uiCamera:process_mode")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("uiCamera:process_mode")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(1, 2),
+"times": PackedFloat32Array(0, 1.96667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 4]
 }
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.3, 0.366667),
-"transitions": PackedFloat32Array(1, 1),
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.533333),
+"transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"startArc"
-}, {
 "args": [false],
 "method": &"editCursorVisibility"
 }]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("uiLayer/uiMenu/uiFadeOverlay:color")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.3, 1, 1.36667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(0.0196078, 0.0196078, 0.0196078, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0.054902, 0.0235294, 0.0980392, 0)]
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("uiLayer/uiMenu/uiArcSelect/uiArcLoaded/uiStartArc:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_u5j4h"]
@@ -1548,7 +1545,7 @@ font_size = 25
 
 [sub_resource type="Gradient" id="Gradient_g5nya"]
 offsets = PackedFloat32Array(0, 0.38806, 1)
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.721569, 0, 0, 0, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.721569, 0.0196078, 0.0196078, 0.0196078, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_y4q1h"]
 gradient = SubResource("Gradient_g5nya")
@@ -1913,7 +1910,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
-color = Color(0.0240298, 0.0240298, 0.0240298, 1)
+color = Color(0.0196078, 0.0196078, 0.0196078, 1)
 
 [node name="uiNoArc" type="Label" parent="uiLayer/uiMenu/uiArcSelect/uiNoArc"]
 layout_mode = 1
@@ -1971,15 +1968,7 @@ offset_top = 312.0
 offset_right = -128.0
 offset_bottom = 834.0
 grow_horizontal = 0
-text = "To see is to believe.
-
-Would you open your eyes to face life's challenges, or keep them closed to simply endure them? The journey ahead won't be easy, but it’s one we all must take.
-
-This description doesn’t reveal what lies ahead when you press play—much like life itself. We never truly know what’s coming or when. 
-
-Yet, the question remains: are you ready to face it?
-
-Join us in The Journey of the Starlit Veil: Chapter 1, where memories once shrouded in fog and uncertainty begin to take shape, becoming crystal clear."
+text = " ."
 label_settings = SubResource("LabelSettings_smd8e")
 autowrap_mode = 2
 visible_characters_behavior = 1
@@ -1994,7 +1983,7 @@ offset_top = 128.0
 offset_right = -128.0
 offset_bottom = 206.0
 grow_horizontal = 0
-text = "First Arc"
+text = "  ."
 label_settings = SubResource("LabelSettings_0fjo3")
 autowrap_mode = 2
 visible_characters_behavior = 1
@@ -2009,7 +1998,7 @@ offset_top = 208.0
 offset_right = -128.0
 offset_bottom = 262.0
 grow_horizontal = 0
-text = "Chapter 1"
+text = "  ."
 label_settings = SubResource("LabelSettings_dqlot")
 autowrap_mode = 2
 visible_characters_behavior = 1
@@ -2027,7 +2016,6 @@ offset_right = -128.0
 offset_bottom = -152.0
 grow_horizontal = 0
 grow_vertical = 0
-disabled = true
 
 [connection signal="_montage" from="." to="." method="_montageGame"]
 [connection signal="timeout" from="uiLayer/uiMenu/uiAnim/uiInactivity" to="." method="_on_ui_inactivity_timeout"]

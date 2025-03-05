@@ -116,3 +116,6 @@ func disposeSpaceSector() -> int:
 
 func getBackground() -> Node2D:
 	return _spaceBgGen
+
+func getPhenomena() -> Node2D:
+	return _spacePhenoGen

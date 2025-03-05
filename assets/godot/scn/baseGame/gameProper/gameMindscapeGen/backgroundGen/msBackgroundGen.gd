@@ -223,6 +223,5 @@ func mindscapeSetOpacity(value: float, includeStars: bool = false, immediate: bo
 	if includeStars:
 		_tween.tween_property(_stars, "modulate:a", value, _time)
 
-
 func _on_timer_timeout() -> void:
 	_stars.set_speed_scale(0)

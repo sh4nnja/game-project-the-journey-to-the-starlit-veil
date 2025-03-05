@@ -34,7 +34,7 @@ func _ready() -> void:
 	await _gameProper.ready
 	
 	# Load mindscape.
-	_gameProper.loadMindscape()
+	_gameProper.getMindscape().loadSpaceSector()
 
 #------------------------------------------------------------------------------#
 # SCENE LOADERS...
@@ -74,12 +74,37 @@ func searchStoryArcs(path: String = "stories/"):
 				print("    Found directory: " + _fileName)
 				
 				# TODO: Check folder. 
-				print("        Checking file integrity...")
+				var _subdirPath = path + "/" + _fileName + "/arcManager"
+				var _subdir = DirAccess.open(_subdirPath)
 				
-				print("            Checking hash...")
-				print("            Checking values...")
+				if _subdir:
+					print("        Checking file integrity...")
+					
+					_subdir.list_dir_begin()
+					
+					var _subFile = _subdir.get_next()
+					
+					while _subFile != "":
+						if _subFile.ends_with(".tscn"):  # Check if a script file exists
+							print("            Checking values...")
+							print("            Found content: " + _subFile + " in " + _fileName + "/arcManager")
+							break
+						
+						_subFile = _subdir.get_next()
+					
+					# Update lib.
+					var _scr = load(path + "/" + _fileName + "/" + "arcManager/" + _subFile).instantiate()
+					lib.availableArcs[_fileName] = _scr.getStoryDetails()
+					lib.availableArcs[_fileName]["file"] = "stories/" + _fileName + "/arcManager/arcManager.tscn"
+					_scr = null
+					
+					lib.arcLoaded = true
+					
+					_subdir.list_dir_end()
 				
-				lib.available_arcs[_fileName] = {}
+				else:
+					print("        arcManager folder missing or inaccessible.")
+				
 				_hasContent = true
 				
 				print("        Story arc file " + _fileName + " is successfully read...")
@@ -92,6 +117,7 @@ func searchStoryArcs(path: String = "stories/"):
 	else:
 		print("Error. No stories folder present...")
 	
+	print("Scan Complete.")
 	print("#------------------------------------------------------------------------------#")
 
 #------------------------------------------------------------------------------#
