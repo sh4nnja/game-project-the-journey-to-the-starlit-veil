@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dxqigm2vbh2co"]
 
-[ext_resource type="Script" path="res://assets/godot/scn/baseGame/player/trail.gd" id="1_4u8em"]
+[ext_resource type="Script" uid="uid://jptuymjrmlxb" path="res://assets/godot/scn/baseGame/player/trail.gd" id="1_4u8em"]
 [ext_resource type="Texture2D" uid="uid://ddntvfhfjauqj" path="res://assets/external/png/star/star2.png" id="2_vptfx"]
 
 [sub_resource type="Curve" id="Curve_er4n6"]
@@ -18,10 +18,10 @@ metadata/_edit_vertical_guides_ = [-39.0]
 
 [node name="particles" type="CPUParticles2D" parent="."]
 amount = 50
+texture = ExtResource("2_vptfx")
 randomness = 1.0
 fixed_fps = 60
 draw_order = 1
-texture = ExtResource("2_vptfx")
 emission_shape = 1
 emission_sphere_radius = 5.0
 direction = Vector2(0, 0)

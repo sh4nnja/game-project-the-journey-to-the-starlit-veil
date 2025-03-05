@@ -1,9 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://dr4i15woagsi"]
+[gd_scene load_steps=16 format=3 uid="uid://dr4i15woagsi"]
 
-[ext_resource type="Script" path="res://stories/arcOne/arcManager/arcOneManager.gd" id="1_q3ovk"]
-[ext_resource type="Shader" path="res://assets/godot/tres/shaders/blur.gdshader" id="3_0axac"]
+[ext_resource type="Script" uid="uid://c5sxxnis633ik" path="res://stories/arcOne/arcManager/arcOneManager.gd" id="1_q3ovk"]
+[ext_resource type="Shader" uid="uid://cwq6ttlsds7tk" path="res://assets/godot/tres/shaders/blur.gdshader" id="3_0axac"]
 [ext_resource type="FontFile" uid="uid://b3f6o2t3fsb05" path="res://assets/external/font/RobotoCondensed-Light.ttf" id="4_qxiin"]
-[ext_resource type="PackedScene" uid="uid://dxqigm2vbh2co" path="res://assets/godot/scn/baseGame/player/trail.tscn" id="4_tqulq"]
 [ext_resource type="Texture2D" uid="uid://brhmtrddh4sp1" path="res://assets/external/png/fx/vignette.png" id="7_riamt"]
 
 [sub_resource type="Animation" id="Animation_uiee7"]
@@ -63,15 +62,15 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2l14g"]
 _data = {
-"RESET": SubResource("Animation_uiee7"),
-"arcFade": SubResource("Animation_xdcqg")
+&"RESET": SubResource("Animation_uiee7"),
+&"arcFade": SubResource("Animation_xdcqg")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8d14l"]
 shader = ExtResource("3_0axac")
 shader_parameter/blur_amount = 1.0
-shader_parameter/mix_amount = null
-shader_parameter/color_over = null
+shader_parameter/mix_amount = 0.0
+shader_parameter/color_over = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_5fymj"]
 font = ExtResource("4_qxiin")
@@ -208,8 +207,8 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1638g"]
 _data = {
-"RESET": SubResource("Animation_pqxpy"),
-"intro": SubResource("Animation_i27k2")
+&"RESET": SubResource("Animation_pqxpy"),
+&"intro": SubResource("Animation_i27k2")
 }
 
 [node name="arcManager" type="Node2D" groups=["gameArc"]]
@@ -221,7 +220,7 @@ layer = 3
 [node name="uiAnim" type="AnimationPlayer" parent="uiLayer"]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_2l14g")
+&"": SubResource("AnimationLibrary_2l14g")
 }
 
 [node name="uiMenu" type="Control" parent="uiLayer"]
@@ -308,11 +307,7 @@ anim_player = NodePath("../scenes")
 [node name="scenes" type="AnimationPlayer" parent="assets"]
 callback_mode_process = 0
 libraries = {
-"": SubResource("AnimationLibrary_1638g")
+&"": SubResource("AnimationLibrary_1638g")
 }
 
 [node name="memories" type="Node2D" parent="assets"]
-
-[node name="player" type="Node2D" parent="assets"]
-
-[node name="trail" parent="assets/player" instance=ExtResource("4_tqulq")]

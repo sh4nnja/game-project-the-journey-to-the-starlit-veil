@@ -37,7 +37,8 @@ const gasColorMaxRnge: float = 1.00
 const gasColorAlpha: float = 0.5
 
 # Gameplay.
-var gameplayEnabled: bool = false
+var canInteract: bool = false
+var isPlaying: bool = false
 var arcLoaded: bool = false
 var availableArcs: Dictionary = {
 	
@@ -126,8 +127,10 @@ func editCursorVisibility(showCursor: bool) -> void:
 	if showCursor:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		Input.warp_mouse(DisplayServer.screen_get_size() / 2)
+		canInteract = true
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		canInteract = false
 
 #------------------------------------------------------------------------------#
 # ARCHIVES 

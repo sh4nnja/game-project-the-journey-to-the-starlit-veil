@@ -1,4 +1,6 @@
 extends CharacterBody2D
+
+@onready var camera: Camera2D = get_node("camera")
 #------------------------------------------------------------------------------#
 # Movement.
 const SPEED: float = 200.0
@@ -16,7 +18,7 @@ func _manageMovement(_delta: float) -> void:
 	
 	# Take note of the movement.
 	# Movement left to right.
-	if Input.is_action_pressed("click"):
+	if Input.is_action_pressed("click") and lib.canInteract:
 		_vel = get_global_mouse_position() - get_global_position()
 	
 	# Calculate target velocity based on input

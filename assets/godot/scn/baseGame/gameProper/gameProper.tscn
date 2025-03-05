@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://bih5luxeqykid"]
+[gd_scene load_steps=11 format=3 uid="uid://bih5luxeqykid"]
 
-[ext_resource type="Script" path="res://assets/godot/scn/baseGame/gameProper/gameProper.gd" id="1_hjay7"]
+[ext_resource type="Script" uid="uid://b6wvjfsb127g7" path="res://assets/godot/scn/baseGame/gameProper/gameProper.gd" id="1_hjay7"]
 [ext_resource type="PackedScene" uid="uid://d2knxogc4ing1" path="res://assets/godot/scn/baseGame/gameProper/userInterface/toMenu/uiToMenu.tscn" id="2_55g80"]
 [ext_resource type="Environment" uid="uid://pxr6ffxs2bp7" path="res://assets/godot/tres/scnEnv.tres" id="2_h31ue"]
-[ext_resource type="Script" path="res://assets/godot/scn/baseGame/gameProper/userInterface/gameProperUI.gd" id="2_jws2c"]
+[ext_resource type="Script" uid="uid://s740pdx4p018" path="res://assets/godot/scn/baseGame/gameProper/userInterface/gameProperUI.gd" id="2_jws2c"]
 [ext_resource type="PackedScene" uid="uid://dp51oah6gmomd" path="res://assets/godot/scn/baseGame/gameProper/gameMindscapeGen/mindScapeMngr.tscn" id="3_y1nyr"]
-[ext_resource type="Script" path="res://assets/godot/scn/baseGame/gameProper/gameArcMngr.gd" id="4_ok0yk"]
+[ext_resource type="Script" uid="uid://bg872d7balts1" path="res://assets/godot/scn/baseGame/gameProper/gameArcMngr.gd" id="4_ok0yk"]
+[ext_resource type="PackedScene" uid="uid://dxqigm2vbh2co" path="res://assets/godot/scn/baseGame/player/trail.tscn" id="7_88skm"]
 
 [sub_resource type="Animation" id="Animation_33myk"]
 length = 0.001
@@ -88,8 +89,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cehgd"]
 _data = {
-"RESET": SubResource("Animation_33myk"),
-"pause": SubResource("Animation_e5n1m")
+&"RESET": SubResource("Animation_33myk"),
+&"pause": SubResource("Animation_e5n1m")
 }
 
 [node name="spaceGameProper" type="Node2D" groups=["gameManager"]]
@@ -111,7 +112,7 @@ script = ExtResource("2_jws2c")
 [node name="uiAnim" type="AnimationPlayer" parent="uiLayer/uiMenu"]
 callback_mode_process = 0
 libraries = {
-"": SubResource("AnimationLibrary_cehgd")
+&"": SubResource("AnimationLibrary_cehgd")
 }
 
 [node name="uiFadeOverlay" type="ColorRect" parent="uiLayer/uiMenu"]
@@ -157,4 +158,7 @@ environment = ExtResource("2_h31ue")
 [node name="spaceSectorManager" parent="mindscape" instance=ExtResource("3_y1nyr")]
 
 [node name="spaceGameArc" type="Node2D" parent="." groups=["gameArcManager"]]
+visible = false
 script = ExtResource("4_ok0yk")
+
+[node name="trail" parent="spaceGameArc" instance=ExtResource("7_88skm")]

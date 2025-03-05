@@ -1,6 +1,6 @@
 [gd_scene load_steps=46 format=3 uid="uid://cl5mvnsyob8pv"]
 
-[ext_resource type="Script" path="res://assets/godot/scn/baseGame/gameMainMenu/gameMainMenu.gd" id="1_u50fn"]
+[ext_resource type="Script" uid="uid://cvnqb5tftxhl7" path="res://assets/godot/scn/baseGame/gameMainMenu/gameMainMenu.gd" id="1_u50fn"]
 [ext_resource type="AudioStream" uid="uid://pp5mvw30ygg7" path="res://assets/external/aud/bgm/score/httpswww.fesliyanstudios.commusicfiles2023-05-02_-_Galaxys_Endless_Expanse_-_www.FesliyanStudios.com2023-05-02_-_Galaxys_Endless_Expanse_-_www.FesliyanStudios.com.mp3" id="2_a52l8"]
 [ext_resource type="FontFile" uid="uid://b7v8fse3db07l" path="res://assets/external/font/RobotoCondensed-LightItalic.ttf" id="3_bsvqu"]
 [ext_resource type="Texture2D" uid="uid://bxob6lbcb0hdo" path="res://assets/external/png/logo/Godot Logo.png" id="4_vwqxi"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dl052par3gshi" path="res://assets/godot/scn/baseGame/gameMainMenu/userInterface/mindscapeCode/uiInputCode.tscn" id="7_8hp2b"]
 [ext_resource type="PackedScene" uid="uid://dgurew8fui5pv" path="res://assets/godot/scn/baseGame/gameMainMenu/userInterface/mainMenu/genMindscape/uiMenuGenMs.tscn" id="7_blbwu"]
 [ext_resource type="PackedScene" uid="uid://bp6uu25kxrene" path="res://assets/godot/scn/baseGame/gameMainMenu/userInterface/mainMenu/codeValidation/uiMenuCodeBtn.tscn" id="7_fgblm"]
-[ext_resource type="Shader" path="res://assets/godot/tres/shaders/blur.gdshader" id="8_23e0w"]
+[ext_resource type="Shader" uid="uid://cwq6ttlsds7tk" path="res://assets/godot/tres/shaders/blur.gdshader" id="8_23e0w"]
 [ext_resource type="PackedScene" uid="uid://eo7j2g77qayc" path="res://assets/godot/scn/baseGame/gameMainMenu/userInterface/mainMenu/exit/uiMenuExit.tscn" id="8_eiuwx"]
 [ext_resource type="PackedScene" uid="uid://cmpem1a1hrxi5" path="res://assets/godot/scn/baseGame/gameMainMenu/userInterface/mainMenu/settings/uiMenuSettings.tscn" id="12_hxl7m"]
 [ext_resource type="FontFile" uid="uid://b3f6o2t3fsb05" path="res://assets/external/font/RobotoCondensed-Light.ttf" id="14_fe508"]
@@ -695,7 +695,7 @@ tracks/9/keys = {
 
 [sub_resource type="Animation" id="Animation_7a204"]
 resource_name = "startArc"
-length = 2.0
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -757,6 +757,30 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("uiCamera:enabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("uiLayer/uiMenu/uiFadeOverlay:color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.0196078, 0.0196078, 0.0196078, 0), Color(0.0196078, 0.0196078, 0.0196078, 1), Color(0.0196078, 0.0196078, 0.0196078, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_u5j4h"]
@@ -1486,15 +1510,15 @@ tracks/12/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_taetd"]
 _data = {
-"RESET": SubResource("Animation_h3ajy"),
-"generateNewSectorFade": SubResource("Animation_cwcnj"),
-"locateSectorOverlay": SubResource("Animation_pjph0"),
-"startArc": SubResource("Animation_7a204"),
-"toMainMenu": SubResource("Animation_u5j4h"),
-"travelToSector": SubResource("Animation_oayup"),
-"uiFadeInactivity": SubResource("Animation_kvhxs"),
-"uiLogoShowcaseAnimation": SubResource("Animation_31sw0"),
-"uiMainMenuAnimation": SubResource("Animation_mp2rc")
+&"RESET": SubResource("Animation_h3ajy"),
+&"generateNewSectorFade": SubResource("Animation_cwcnj"),
+&"locateSectorOverlay": SubResource("Animation_pjph0"),
+&"startArc": SubResource("Animation_7a204"),
+&"toMainMenu": SubResource("Animation_u5j4h"),
+&"travelToSector": SubResource("Animation_oayup"),
+&"uiFadeInactivity": SubResource("Animation_kvhxs"),
+&"uiLogoShowcaseAnimation": SubResource("Animation_31sw0"),
+&"uiMainMenuAnimation": SubResource("Animation_mp2rc")
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_fna74"]
@@ -1597,7 +1621,7 @@ anim_player = NodePath("../uiAnim")
 root_node = NodePath("../../..")
 callback_mode_process = 0
 libraries = {
-"": SubResource("AnimationLibrary_taetd")
+&"": SubResource("AnimationLibrary_taetd")
 }
 
 [node name="uiInactivity" type="Timer" parent="uiLayer/uiMenu/uiAnim"]

@@ -244,6 +244,3 @@ func _on_ui_start_arc() -> void:
 		_menuCamera.set_enabled(false)
 		get_tree().call_group("gameArcManager", "loadArc", _arc_scene)
 		_uiAnim.play("startArc")
-		await _uiAnim.animation_finished
-	else:
-		pass
