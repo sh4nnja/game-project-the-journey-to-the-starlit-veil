@@ -2,6 +2,8 @@
 
 extends Node2D
 #------------------------------------------------------------------------------#
+@onready var pseudoRoot: Node = get_parent()
+
 # Montage camera for map.
 @onready var _menuCamera: Camera2D = get_node("uiCamera")
 
@@ -55,14 +57,6 @@ func _ready() -> void:
 	
 	# Starts the camera animation and changes the quote.
 	_montage.emit()
-	
-	# Update arcs.
-	_updateArcTitles([
-		lib.availableArcs[lib.availableArcs.keys()[0]]["name"], 
-		lib.availableArcs[lib.availableArcs.keys()[0]]["sub-name"], 
-		lib.availableArcs[lib.availableArcs.keys()[0]]["desc"], 
-		lib.availableArcs[lib.availableArcs.keys()[0]]["file"]
-	])
 
 # Fires when input event happens, every time.
 func _input(_event) -> void:
@@ -115,6 +109,15 @@ func _proceedToMindscape() -> void:
 	
 	# Play the introduction animation on overlay while adding the playthrough.
 	if not _startedOnce:
+		pseudoRoot.searchStoryArcs()
+		if not lib.availableArcs.is_empty():
+			_updateArcTitles([
+				lib.availableArcs[lib.availableArcs.keys()[0]]["name"], 
+				lib.availableArcs[lib.availableArcs.keys()[0]]["sub-name"], 
+				lib.availableArcs[lib.availableArcs.keys()[0]]["desc"], 
+				lib.availableArcs[lib.availableArcs.keys()[0]]["file"]
+			])
+		
 		_uiAnim.play("travelToSector")
 		_startedOnce = true
 		_selectArc = true

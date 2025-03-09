@@ -97,6 +97,7 @@ _data = {
 script = ExtResource("1_hjay7")
 
 [node name="uiLayer" type="CanvasLayer" parent="."]
+layer = 3
 
 [node name="uiMenu" type="Control" parent="uiLayer"]
 process_mode = 3

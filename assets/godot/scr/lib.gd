@@ -37,8 +37,11 @@ const gasColorMaxRnge: float = 1.00
 const gasColorAlpha: float = 0.5
 
 # Gameplay.
-var canInteract: bool = false
 var isPlaying: bool = false
+
+var canMove: bool = false
+var canInteract: bool = false
+
 var arcLoaded: bool = false
 var availableArcs: Dictionary = {
 	

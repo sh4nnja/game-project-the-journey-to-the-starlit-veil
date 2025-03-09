@@ -18,7 +18,7 @@ func _manageMovement(_delta: float) -> void:
 	
 	# Take note of the movement.
 	# Movement left to right.
-	if Input.is_action_pressed("click") and lib.canInteract:
+	if Input.is_action_pressed("click") and lib.canMove:
 		_vel = get_global_mouse_position() - get_global_position()
 	
 	# Calculate target velocity based on input

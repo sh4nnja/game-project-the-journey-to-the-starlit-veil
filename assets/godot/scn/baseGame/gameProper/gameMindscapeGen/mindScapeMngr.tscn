@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dp51oah6gmomd"]
 
-[ext_resource type="Script" path="res://assets/godot/scn/baseGame/gameProper/gameMindscapeGen/mindScapeMngr.gd" id="1_152lw"]
+[ext_resource type="Script" uid="uid://du7agbuewpwtf" path="res://assets/godot/scn/baseGame/gameProper/gameMindscapeGen/mindScapeMngr.gd" id="1_152lw"]
 [ext_resource type="PackedScene" uid="uid://ndsnl58qknvl" path="res://assets/godot/scn/baseGame/gameProper/gameMindscapeGen/phenomenaGen/msPhenomenaGen.tscn" id="3_xphlk"]
 [ext_resource type="PackedScene" uid="uid://ipqn6c3kseo2" path="res://assets/godot/scn/baseGame/gameProper/gameMindscapeGen/backgroundGen/msBackgroundGen.tscn" id="4_ooul8"]
 

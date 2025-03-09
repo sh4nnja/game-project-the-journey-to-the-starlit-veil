@@ -87,6 +87,7 @@ func loadThread(spaceArray: Array) -> void:
 	print("\nLoading space background textures in the thread...")
 	
 	# Load the stars.
+	_stars.set_process_mode(Node.PROCESS_MODE_INHERIT)
 	_star_timer.start(lib.genRand(1, 9))
 
 # IMPORTANT CODE: Thread Function for background space generation. 
@@ -225,3 +226,4 @@ func mindscapeSetOpacity(value: float, includeStars: bool = false, immediate: bo
 
 func _on_timer_timeout() -> void:
 	_stars.set_speed_scale(0)
+	_stars.set_process_mode(Node.PROCESS_MODE_DISABLED)

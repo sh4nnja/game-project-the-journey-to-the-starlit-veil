@@ -2,7 +2,6 @@
 
 [resource]
 background_mode = 3
-background_canvas_max_layer = 1
 tonemap_mode = 1
 tonemap_exposure = 0.85
 tonemap_white = 5.0

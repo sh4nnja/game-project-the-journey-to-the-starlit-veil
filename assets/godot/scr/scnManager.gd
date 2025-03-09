@@ -24,9 +24,6 @@ func _ready() -> void:
 	_uiNode = _loadScnRes(_checkResource(_uiMenuPath))
 	_gameProper = _loadScnRes(_checkResource(_gameProperPath))
 	
-	# Find stories available and store their data.
-	searchStoryArcs()
-	
 	# Await to load the scenes.
 	await _uiNode.tree_entered
 	await _uiNode.ready
@@ -68,7 +65,6 @@ func searchStoryArcs(path: String = "stories/"):
 	if _dir:
 		_dir.list_dir_begin()
 		var _fileName = _dir.get_next()
-		var _hasContent = false
 		while _fileName != "":
 			if _dir.current_is_dir():
 				print("    Found directory: " + _fileName)
@@ -78,7 +74,7 @@ func searchStoryArcs(path: String = "stories/"):
 				var _subdir = DirAccess.open(_subdirPath)
 				
 				if _subdir:
-					print("        Checking file integrity...")
+					print("        Checking folder contents in " + _fileName + "/arcManager...")
 					
 					_subdir.list_dir_begin()
 					
@@ -86,33 +82,30 @@ func searchStoryArcs(path: String = "stories/"):
 					
 					while _subFile != "":
 						if _subFile.ends_with(".tscn"):  # Check if a script file exists
-							print("            Checking values...")
-							print("            Found content: " + _subFile + " in " + _fileName + "/arcManager")
+							print("            Found content: " + _subFile)
 							break
 						
 						_subFile = _subdir.get_next()
 					
 					# Update lib.
-					var _scr = load(path + "/" + _fileName + "/" + "arcManager/" + _subFile).instantiate()
-					lib.availableArcs[_fileName] = _scr.getStoryDetails()
-					lib.availableArcs[_fileName]["file"] = "stories/" + _fileName + "/arcManager/arcManager.tscn"
-					_scr = null
-					
-					lib.arcLoaded = true
+					if _subFile != "":
+						print("            Checking values...")
+						var _scr = load(path + "/" + _fileName + "/" + "arcManager/" + _subFile).instantiate()
+						lib.availableArcs[_fileName] = _scr.getStoryDetails()
+						lib.availableArcs[_fileName]["file"] = "stories/" + _fileName + "/arcManager/arcManager.tscn"
+						_scr = null
+						
+						lib.arcLoaded = true
+						print("        Story arc file " + _fileName + " is successfully read...")
+					else:
+						print("            No arc file visible.")
 					
 					_subdir.list_dir_end()
 				
 				else:
 					print("        arcManager folder missing or inaccessible.")
-				
-				_hasContent = true
-				
-				print("        Story arc file " + _fileName + " is successfully read...")
 			
 			_fileName = _dir.get_next()
-		
-		if not _hasContent:
-			print("    Empty folder. No story arcs loaded.")
 	
 	else:
 		print("Error. No stories folder present...")

@@ -6,9 +6,8 @@ extends Node2D
 
 #------------------------------------------------------------------------------#
 # Accessor to the main game proper's scene changer.
-var game: Node2D = get_parent()
 @onready var player: CharacterBody2D = get_node("trail")
-
+@onready var manager: Node2D = get_parent()
 
 #------------------------------------------------------------------------------#
 
