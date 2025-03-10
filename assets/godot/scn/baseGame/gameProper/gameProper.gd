@@ -5,10 +5,8 @@
 
 extends Node2D
 #------------------------------------------------------------------------------#
-@onready var _spaceSector: Node2D = get_node("mindscape/spaceSectorManager")
+@onready var mindscape: Node2D = get_node("mindscape/spaceSectorManager")
 
 #------------------------------------------------------------------------------#
-func getMindscape() -> Node2D:
-	return _spaceSector
-
-#------------------------------------------------------------------------------#
+func setMindscape(emotions: Dictionary) -> void:
+	pass

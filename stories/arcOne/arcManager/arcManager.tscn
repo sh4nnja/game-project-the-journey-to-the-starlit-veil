@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dr4i15woagsi"]
+[gd_scene load_steps=15 format=3 uid="uid://dr4i15woagsi"]
 
 [ext_resource type="Script" uid="uid://c5sxxnis633ik" path="res://stories/arcOne/arcManager/arcOneManager.gd" id="1_q3ovk"]
 [ext_resource type="Shader" uid="uid://cwq6ttlsds7tk" path="res://assets/godot/tres/shaders/blur.gdshader" id="3_0axac"]
@@ -32,6 +32,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("uiLayer/uiMenu/uiDialogs/text:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.667728)]
+}
 
 [sub_resource type="Animation" id="Animation_xdcqg"]
 resource_name = "arcFade"
@@ -61,10 +73,27 @@ tracks/1/keys = {
 "values": [false, true]
 }
 
+[sub_resource type="Animation" id="Animation_bj02h"]
+resource_name = "showText"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("uiLayer/uiMenu/uiDialogs/text:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.832919, 4.1, 4.96667),
+"transitions": PackedFloat32Array(1, 0.05, 0.05, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2l14g"]
 _data = {
 &"RESET": SubResource("Animation_uiee7"),
-&"arcFade": SubResource("Animation_xdcqg")
+&"arcFade": SubResource("Animation_xdcqg"),
+&"showText": SubResource("Animation_bj02h")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8d14l"]
@@ -134,10 +163,10 @@ tracks/4/path = NodePath("../uiLayer/uiMenu/uiDialogs/choiceManager:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(-0.0333333),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1323, 211)]
+"values": [Vector2(1132, 0)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -154,7 +183,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_i27k2"]
 resource_name = "intro"
-length = 60.0
+length = 120.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -162,10 +191,10 @@ tracks/0/path = NodePath("../uiLayer/uiMenu/uiDialogs/text:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(5.3, 6.3, 9.46667, 9.96667, 12.4, 13.4, 15.3667, 16.2333, 16.8333, 17.6667, 19.6333, 20.6333, 25.0333, 25.8667, 27.8333, 28.8333, 32.0402, 32.8736, 34.8402, 35.8402, 38.0542, 38.8876, 40.8542, 41.8542),
-"transitions": PackedFloat32Array(0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35),
+"times": PackedFloat32Array(5.3, 6.3, 9.46667, 9.96667, 12.4, 13.4, 15.3667, 16.2333, 16.8333, 17.6667, 19.6333, 20.6333, 25.0333, 25.8667, 27.8333, 28.8333, 32.0402, 32.8736, 34.8402, 35.8402, 38.0542, 38.8876, 40.8542, 41.8542, 43.726, 44.5594, 49.4667, 50.4667, 52.3667, 53.2001, 58.6667, 59.6667, 62.2283, 63.0617, 68.5283, 69.5283, 72.8231, 73.6565, 79.1231, 80.1231, 82.0791, 82.9125, 86.5, 87.5),
+"transitions": PackedFloat32Array(0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -174,10 +203,10 @@ tracks/1/path = NodePath("../uiLayer/uiMenu/uiDialogs/text:text")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(5.03333, 12.0667, 16.5333, 24.8667, 38.0542),
-"transitions": PackedFloat32Array(0.35, 0.35, 0.35, 0.35, 0.35),
+"times": PackedFloat32Array(5.03333, 12.0667, 16.5333, 24.8667, 38.0542, 43.726, 52.3667, 62.2283, 72.8231, 82.0791),
+"transitions": PackedFloat32Array(0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35),
 "update": 1,
-"values": ["...", "Hey there...", "...Are you alright?", "You're floating here for ages now...", "But answers... those, you must find for yourself, I'm afraid."]
+"values": ["...", "Hey there...", "...Are you alright?", "You're floating here for ages now...", "But answers... those, you must find for yourself, I'm afraid.", "You've been drifting endlessly… That’s no way to be, is it?", "Try reaching out… Just hold your will on where you wish to go.", "Good… You’re starting to remember.", "Now that you can move… where will you go?", "Or are you still unsure?"]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -210,14 +239,23 @@ tracks/4/path = NodePath("..")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(28.8667, 30),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(28.8667, 30, 32.0747, 52.4667, 52.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "values": [{
 "args": [true],
 "method": &"editCursorVisibility"
 }, {
 "args": [],
 "method": &"introChoice"
+}, {
+"args": [false],
+"method": &"editCursorVisibility"
+}, {
+"args": [true],
+"method": &"editCursorVisibility"
+}, {
+"args": [],
+"method": &"enableMovement"
 }]
 }
 tracks/5/type = "value"
@@ -230,7 +268,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(29.9),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1323, 211)]
+"values": [Vector2(1132, 0)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -251,9 +289,12 @@ tracks/7/path = NodePath("scenes")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(30.8667),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(30.8667, 59.7),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"pause"
+}, {
 "args": [],
 "method": &"pause"
 }]
@@ -361,10 +402,15 @@ visible_characters_behavior = 1
 [node name="choiceManager" parent="uiLayer/uiMenu/uiDialogs" instance=ExtResource("5_bj02h")]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-offset_left = 363.0
-offset_top = -329.0
-offset_right = 877.0
-offset_bottom = 347.0
+anchors_preset = -1
+anchor_left = 0.504
+anchor_right = 0.504
+offset_left = 164.32
+offset_top = -540.0
+offset_right = 951.32
+offset_bottom = 540.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="assets" type="Node2D" parent="."]
 visible = false

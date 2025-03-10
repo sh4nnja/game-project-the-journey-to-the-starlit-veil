@@ -41,11 +41,14 @@ func getStoryDesc() -> String:
 
 #------------------------------------------------------------------------------#
 # Emotions
-func setEmotions(values: Array) -> void:
+func setEmotions(values: Array, manager: Node2D) -> void:
 	values.pop_front()
 	for _emotion in values:
 		if emotions.has(_emotion[0]):
 			emotions[_emotion[0]] += _emotion[1]
+	
+	if manager.is_in_group("mindscapeManager"):
+		manager.setMindscape(emotions)
 
 #------------------------------------------------------------------------------#
 func editCursorVisibility(showCursor: bool) -> void:

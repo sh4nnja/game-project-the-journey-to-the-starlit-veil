@@ -10,7 +10,6 @@ extends Node2D
 @onready var manager: Node2D = get_parent()
 
 #------------------------------------------------------------------------------#
-
 # Check if there's an arc loaded and start it.
 func loadArc(arc_scene: String):
 	if get_child_count() < 2:

@@ -31,7 +31,7 @@ func _ready() -> void:
 	await _gameProper.ready
 	
 	# Load mindscape.
-	_gameProper.getMindscape().loadSpaceSector()
+	_gameProper.mindscape.loadSpaceSector()
 
 #------------------------------------------------------------------------------#
 # SCENE LOADERS...

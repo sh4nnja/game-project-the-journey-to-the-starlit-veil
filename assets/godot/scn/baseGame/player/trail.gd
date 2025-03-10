@@ -7,6 +7,8 @@ const SPEED: float = 200.0
 const DECELERATION: float = 15.0
 var _vel: Vector2 = Vector2.ZERO 
 
+var isMoving: bool = false
+
 #------------------------------------------------------------------------------#
 func _physics_process(_delta: float) -> void:
 	_manageMovement(_delta)
@@ -28,8 +30,10 @@ func _manageMovement(_delta: float) -> void:
 	if _vel.length() == 0:
 		# Smoothly reduce velocity towards zero
 		velocity = velocity.move_toward(Vector2.ZERO, DECELERATION * _delta)
+		isMoving = false
 	else:
 		# When there is input, accelerate towards the target velocity
 		velocity = velocity.move_toward(targetVelocity, SPEED * _delta)
+		isMoving = true
 	
 	move_and_slide()
